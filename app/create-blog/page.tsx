@@ -1,3 +1,9 @@
+import BlogForm from '@/components/blog-form/blog-form';
+
 export default function CreateBlog() {
-	return <section>create blog</section>;
+	return (
+		<section className='flex flex-col items-center justify-center'>
+			<BlogForm />
+		</section>
+	);
 }

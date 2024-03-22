@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 export default function Home() {
 	return (
 		<section className='flex h-[100%] flex-row'>
@@ -10,6 +11,10 @@ export default function Home() {
 					labore facilis quo sapiente officiis dolorum, reprehenderit natus.
 					Deleniti?
 				</p>
+				<Link href="/create-blog">
+				<button className='py-2 px-4 bg-sky-500 text-white shadow-sm shadow-slate-400 rounded-sm'>Get Started -></button>
+				</Link>
+				
 			</div>
 			<div className='relative h-[100%] w-[50%]'>
 				<Image
