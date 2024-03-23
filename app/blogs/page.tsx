@@ -6,7 +6,9 @@ export interface Article extends CreateBlogData {
 }
 
 export default async function Blogs() {
-	const response = await fetch('http://localhost:3000/api/posts');
+	const response = await fetch('http://localhost:3000/api/posts', {
+		next: { revalidate: 10 },
+	});
 	const articles = await response.json();
 	return (
 		<section className='grid grid-cols-3 justify-center gap-4'>

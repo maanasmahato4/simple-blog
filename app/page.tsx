@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 export default function Home() {
 	return (
-		<section className='flex h-[100%] flex-row'>
+		<section className='flex flex-row'>
 			<div className='flex h-[100%] w-[50%] flex-col items-center justify-center gap-24 px-8'>
 				<h1 className='self-start justify-self-start text-8xl'>SimpleBlogg</h1>
 				<p className='text-2xl opacity-70'>
@@ -16,12 +16,13 @@ export default function Home() {
 				</Link>
 				
 			</div>
-			<div className='relative h-[100%] w-[50%]'>
+			<div className='relative min-h-[100%] w-[50%]'>
 				<Image
 					src='/images/home-image.png'
-					objectFit='cover'
-					layout='fill'
+					fill={true}
+					style={{ objectFit: 'cover' }}
 					alt='an image that refers to a blog'
+					sizes="50vw"
 				/>
 			</div>
 		</section>
