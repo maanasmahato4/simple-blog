@@ -7,7 +7,7 @@ import React, {
 	useState,
 } from 'react';
 
-interface CreateBlogData {
+export interface CreateBlogData {
 	title: string;
 	desc: string;
 }
