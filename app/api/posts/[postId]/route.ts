@@ -10,7 +10,34 @@ export interface RouteParams {
 	};
 }
 
-export async function PUT(req: ExtendedNextApiRequest, context: RouteParams) {
+export async function GET(req: NextApiRequest, context: RouteParams) {
+	await dbConnect();
+	const postId = context.params.postId;
+
+	if (!postId) {
+		return new NextResponse(
+			JSON.stringify({ message: 'postId parameter is required' }),
+			{
+				status: 400,
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			},
+		);
+	}
+
+	const result = await ArticleModel.findById(postId);
+
+	return new NextResponse(JSON.stringify(result), {
+		status: 200,
+		headers: { 'Content-Type': 'application/json' },
+	});
+}
+
+export async function PUT(
+	req: ExtendedNextApiRequest,
+	context: RouteParams,
+): Promise<NextResponse> {
 	await dbConnect();
 	const postId = context.params.postId;
 	const { title, desc } = await req.json();
@@ -53,7 +80,10 @@ export async function PUT(req: ExtendedNextApiRequest, context: RouteParams) {
 	});
 }
 
-export async function DELETE(req: NextApiRequest, context: RouteParams) {
+export async function DELETE(
+	req: NextApiRequest,
+	context: RouteParams,
+): Promise<NextResponse> {
 	await dbConnect();
 	const { postId } = context.params;
 	if (!postId) {
