@@ -22,9 +22,16 @@ const BlogForm: React.FC = (): React.ReactElement => {
 		setData({ ...data, [event.target.name]: event.target.value });
 	}
 
-	function handleSubmit(event: FormEvent<HTMLFormElement>): void {
+	async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void> {
 		event.preventDefault();
-		console.log(data);
+		const response = await fetch('http://localhost:3000/api/posts', {
+			body: JSON.stringify(data),
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+		});
+		const article = await response.json();
+		setData({ title: '', desc: '' });
+		console.log(article.result);
 	}
 
 	useEffect(() => {
